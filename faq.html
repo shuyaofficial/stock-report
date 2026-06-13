@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>よくある質問 | STOCK ACADEMY — 株式大学校</title>
+<style>
+:root{
+  --nv:#0f172a;--nv2:#1e293b;--nv3:#334155;
+  --ac:#3b82f6;--ac2:#2563eb;
+  --gd:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --nt:#64748b;--bg:#f8fafc;--cd:#ffffff;
+  --tx:#0f172a;--tx2:#475569;--br:#e2e8f0;
+  --rr:12px;--sh:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  background:var(--bg);color:var(--tx);font-size:15px;line-height:1.7}
+.hdr{background:var(--nv);color:#fff;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;position:sticky;top:0;z-index:300;box-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.hdr-logo-mark{background:var(--ac);color:#fff;font-size:13px;font-weight:900;
+  padding:4px 10px;border-radius:6px}
+.hdr-title{font-size:16px;font-weight:800;color:#f8fafc}
+.hdr-title em{color:var(--gd);font-style:normal}
+.hdr-nav{display:flex;align-items:center;gap:4px}
+.hdr-nav a{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:600;
+  padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.hdr-nav a:hover,.hdr-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
+.hdr-cta{background:var(--ac);color:#fff!important;border-radius:8px!important;padding:8px 18px!important;font-weight:700!important}
+.page-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:64px 32px;text-align:center}
+.page-hero-tag{display:inline-block;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93c5fd;font-size:12px;font-weight:800;padding:4px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em}
+.page-hero h1{font-size:clamp(26px,4vw,44px);font-weight:900;color:#f8fafc;margin-bottom:14px}
+.page-hero p{font-size:16px;color:#94a3b8;max-width:600px;margin:0 auto}
+.section{padding:72px 32px}
+.section-inner{max-width:800px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(59,130,246,.1);color:var(--ac);font-size:12px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:.08em;margin-bottom:14px}
+.section-title{font-size:clamp(20px,3vw,28px);font-weight:900;color:var(--nv);margin-bottom:12px}
+.section-lead{font-size:15px;color:var(--tx2);line-height:1.8;margin-bottom:32px}
+.section.gray{background:#f1f5f9}
+.btn-primary{background:var(--ac);color:#fff;font-size:15px;font-weight:800;padding:14px 36px;border-radius:10px;text-decoration:none;transition:transform .2s;display:inline-block;box-shadow:0 4px 20px rgba(59,130,246,.4)}
+.btn-primary:hover{transform:translateY(-2px)}
+
+/* FAQ */
+.faq-category{margin-bottom:48px}
+.faq-category-title{font-size:16px;font-weight:800;color:var(--nv);
+  border-left:4px solid var(--ac);padding-left:14px;margin-bottom:16px}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border-radius:var(--rr);border:1px solid var(--br);overflow:hidden;box-shadow:var(--sh)}
+.faq-q{padding:18px 22px;font-size:15px;font-weight:700;color:var(--nv);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  user-select:none;transition:background .15s}
+.faq-q:hover{background:#f8fafc}
+.faq-q-text::before{content:'Q. ';color:var(--ac);font-weight:900}
+.faq-icon{color:var(--ac);font-size:22px;font-weight:900;
+  transition:transform .25s;flex-shrink:0;line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .2s}
+.faq-item.open .faq-a{max-height:600px;padding:16px 22px 20px}
+.faq-a-inner{font-size:14px;color:var(--tx2);line-height:1.85;
+  border-top:1px solid var(--br);padding-top:14px}
+.faq-a-prefix{color:var(--gr);font-weight:900}
+
+/* STILL HAVE Q */
+.still-q{background:var(--nv2);border-radius:16px;padding:40px;text-align:center;
+  border:1px solid var(--nv3)}
+.still-q h3{font-size:20px;font-weight:800;color:#f8fafc;margin-bottom:10px}
+.still-q p{font-size:14px;color:#94a3b8;margin-bottom:24px;max-width:500px;margin-left:auto;margin-right:auto}
+
+/* FOOTER */
+.footer{background:var(--nv);color:#64748b;padding:48px 32px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-size:16px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:800;color:#f8fafc;margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col ul li a:hover{color:#94a3b8}
+.footer-bottom{border-top:1px solid var(--nv3);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:#64748b;text-decoration:none}
+
+@media(max-width:900px){.hdr-nav{display:none}.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.section{padding:48px 20px}.footer-top{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="lp.html" class="hdr-logo">
+    <span class="hdr-logo-mark">STOCK</span>
+    <span class="hdr-title">ACADEMY <em>株式大学校</em></span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="service.html">サービス</a>
+    <a href="curriculum.html">カリキュラム</a>
+    <a href="teachers.html">講師</a>
+    <a href="faq.html" class="active">よくある質問</a>
+    <a href="blog.html">ブログ</a>
+    <a href="index.html">ダッシュボード</a>
+    <a href="contact.html" class="hdr-cta">無料相談</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-tag">FAQ</div>
+  <h1>よくある質問</h1>
+  <p>受講を検討されている方からよくいただく質問をまとめました。</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- 受講資格 -->
+    <div class="faq-category">
+      <div class="faq-category-title">受講資格・対象者について</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">投資未経験でも受講できますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい、むしろ未経験の方を歓迎しています。カリキュラムは証券口座の開設からスタートし、基礎から段階的に学べるよう設計されています。経験がないことで「変な癖がついていない」ため、正しい投資マインドを最初から身につけられる利点があります。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">会社員・副業として始めたい方でも大丈夫ですか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい。受講生の約7割が会社員です。動画講義はオンデマンドでいつでも視聴でき、1on1セッションは平日夜・土日にも対応しています。学習目安は週5〜8時間ですが、コーチと相談してペース調整も可能です。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">年齢制限はありますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>18歳以上の方であればどなたでも受講できます。現在の受講生は20代〜60代まで幅広く、年齢による制限は特にありません。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- カリキュラム -->
+    <div class="faq-category">
+      <div class="faq-category-title">カリキュラム・学習内容について</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">日本株以外（米国株・ETF・仮想通貨など）も学べますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>現在のカリキュラムは主に日本株（東証・グロース市場）を中心に構成されています。ただし、テクニカル・ファンダメンタルズの基礎は他の市場にも応用可能です。米国株については補足教材を提供しており、コーチとの相談で学習内容を一部カスタマイズできます。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">テクニカル分析とファンダメンタルズ、どちらを先に学びますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>まずテクニカル分析（3〜5ヶ月目）を学んだ後、ファンダメンタルズ（5〜7ヶ月目）に進みます。売買タイミングを掴む能力を先につけることで、ファンダメンタルズで選んだ銘柄を「いつ買うか」の判断精度が上がるためです。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">動画講義はいつでも見られますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい、全ての動画講義（累計200本超）はオンデマンドでアーカイブされ、受講期間中いつでも何度でも視聴できます。倍速再生・字幕表示にも対応しています。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- サポート -->
+    <div class="faq-category">
+      <div class="faq-category-title">サポート体制について</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">専属コーチはどのように決まりますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>入学時のヒアリング内容をもとに、あなたの投資スタイル・目標・リスク許容度・性格に最も合ったコーチをこちらで選定します。原則として1年間固定の担当制ですが、相性が合わない場合は変更の相談にも応じます。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">チャットサポートは何時まで対応していますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>24時間受付していますが、返信時間は基本的に営業時間内（9:00〜21:00）です。相場が急変した際や緊急の確認事項については、コーチの状況にもよりますが可能な限り早急に対応します。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">コーチへのセッション回数を増やすことはできますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>エキスパートプランでは週次セッション（週1回）が標準です。それ以上のセッションが必要な場合は追加オプション（1回あたり11,000円税込）でのご対応となります。まずはコーチにご相談ください。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 料金・支払い -->
+    <div class="faq-category">
+      <div class="faq-category-title">料金・お支払いについて</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">分割払いはできますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい、最大12回の分割払いに対応しています。クレジットカード（VISA・Mastercard・American Express・JCB）のほか、銀行振込にも対応しています。分割手数料はご利用のカード会社のポリシーに準じます。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">法人として受講できますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい、法人受講に対応しています。請求書払い・法人クレジットカード払いのどちらも可能です。複数名の社員が受講する場合は法人割引（2名以上で5%OFF）が適用されます。詳細はお問い合わせください。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">返金・キャンセルポリシーを教えてください。</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>入学から8日以内はクーリングオフが可能です（特定商取引法に基づく）。それ以降の中途解約については、残余期間に応じた返金計算となります（消化した1on1セッション・利用したサービスの実費を控除）。詳細は特定商取引法に基づく表記をご確認ください。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 投資資金 -->
+    <div class="faq-category">
+      <div class="faq-category-title">投資資金・実践について</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">受講に必要な投資資金はいくらですか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>最初の9ヶ月（基礎〜ポートフォリオ編）は実際の資金は不要です。バーチャルポートフォリオを使って練習します。実践編（10〜12ヶ月目）では10万円程度から始めることを推奨していますが、金額はコーチと相談の上で決定します。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">利益やリターンは保証されますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>利益を保証することはできません。株式投資にはリスクが伴い、元本割れの可能性があります。STOCK ACADEMYが提供するのは「再現性のある分析プロセスと判断軸」の習得です。過去の実績（受講生平均ポートフォリオ収益率+47%）は将来を保証するものではありません。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">特定の銘柄を推奨してもらえますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>当スクールは投資助言業の登録を行っていないため、特定の銘柄を買うよう推奨することは法律上できません。ただし、スクリーニング手法・分析フレームワーク・判断基準の「学び方」をお伝えし、自分で判断できる力を養うサポートをします。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- その他 -->
+    <div class="faq-category">
+      <div class="faq-category-title">その他</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">受講修了後のサポートはありますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>エキスパートプランの受講生は、修了後1年間のフォローアップ権利（月次コーチセッション1回）が含まれます。また、全ての卒業生はOBコミュニティへの参加が可能で、情報交換や月次勉強会に参加できます。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">スマートフォンだけで受講できますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>動画講義の視聴・チャットサポートはスマートフォンで対応可能です。ただし、株価ダッシュボードの分析や1on1セッションはPCもしくはタブレットの使用を推奨しています（画面の広さが学習効率に影響します）。</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span class="faq-q-text">NISA・iDeCoとの組み合わせは学べますか？</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-a"><div class="faq-a-inner"><span class="faq-a-prefix">A. </span>はい。配当投資フェーズ（鈴木講師担当）でNISA・iDeCoの活用方法について詳しく学べます。特に新NISA（2024年〜）を活用した長期資産形成の戦略は人気の単元です。</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STILL HAVE Q -->
+    <div class="still-q">
+      <h3>他にご質問がありますか？</h3>
+      <p style="margin-top:10px">上記で解決しない疑問・不安は無料相談でお答えします。<br>担当スタッフが丁寧にご説明します。</p>
+      <a href="contact.html" class="btn-primary" style="margin-top:24px">無料相談を申し込む</a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>STOCK ACADEMY — 株式大学校</h3>
+        <p>現役トレーダー直接指導による実践型株式投資スクール。</p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">サービス概要</a></li>
+          <li><a href="curriculum.html">カリキュラム</a></li>
+          <li><a href="teachers.html">講師一覧</a></li>
+          <li><a href="contact.html">無料相談</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="index.html">株価ダッシュボード</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせフォーム</a></li>
+          <li><a href="mailto:info@stock-academy.co.jp">info@stock-academy.co.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 STOCK ACADEMY（株式大学校）All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

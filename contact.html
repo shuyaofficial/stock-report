@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>無料相談・お問い合わせ | STOCK ACADEMY — 株式大学校</title>
+<style>
+:root{
+  --nv:#0f172a;--nv2:#1e293b;--nv3:#334155;
+  --ac:#3b82f6;--ac2:#2563eb;
+  --gd:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --nt:#64748b;--bg:#f8fafc;--cd:#ffffff;
+  --tx:#0f172a;--tx2:#475569;--br:#e2e8f0;
+  --rr:12px;--sh:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  background:var(--bg);color:var(--tx);font-size:15px;line-height:1.7}
+.hdr{background:var(--nv);color:#fff;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;position:sticky;top:0;z-index:300;box-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.hdr-logo-mark{background:var(--ac);color:#fff;font-size:13px;font-weight:900;padding:4px 10px;border-radius:6px}
+.hdr-title{font-size:16px;font-weight:800;color:#f8fafc}
+.hdr-title em{color:var(--gd);font-style:normal}
+.hdr-nav{display:flex;align-items:center;gap:4px}
+.hdr-nav a{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.hdr-nav a:hover,.hdr-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
+.hdr-cta{background:var(--ac);color:#fff!important;border-radius:8px!important;padding:8px 18px!important;font-weight:700!important}
+
+.page-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:64px 32px;text-align:center}
+.page-hero-tag{display:inline-block;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93c5fd;font-size:12px;font-weight:800;padding:4px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em}
+.page-hero h1{font-size:clamp(26px,4vw,44px);font-weight:900;color:#f8fafc;margin-bottom:14px}
+.page-hero p{font-size:16px;color:#94a3b8;max-width:600px;margin:0 auto}
+
+.section{padding:72px 32px}
+.section-inner{max-width:900px;margin:0 auto}
+
+/* BENEFITS */
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
+.benefit{background:var(--nv2);border-radius:var(--rr);padding:24px 20px;
+  border:1px solid var(--nv3);display:flex;align-items:flex-start;gap:14px}
+.benefit-icon{font-size:28px;flex-shrink:0}
+.benefit-title{font-size:14px;font-weight:800;color:#f8fafc;margin-bottom:4px}
+.benefit-desc{font-size:12px;color:#94a3b8;line-height:1.5}
+
+/* FORM LAYOUT */
+.contact-grid{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+.form-card{background:#fff;border-radius:16px;padding:40px;
+  border:1px solid var(--br);box-shadow:var(--sh)}
+.form-title{font-size:20px;font-weight:800;color:var(--nv);margin-bottom:6px}
+.form-subtitle{font-size:13px;color:var(--nt);margin-bottom:28px}
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:13px;font-weight:800;color:var(--nv);
+  margin-bottom:6px}
+.form-label .req{color:var(--rd);margin-left:4px;font-size:11px}
+.form-input,.form-select,.form-textarea{width:100%;padding:12px 14px;
+  border:1px solid var(--br);border-radius:8px;font-size:14px;
+  font-family:inherit;color:var(--tx);background:#fff;
+  transition:border-color .2s,box-shadow .2s;outline:none}
+.form-input:focus,.form-select:focus,.form-textarea:focus{
+  border-color:var(--ac);box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.form-textarea{min-height:120px;resize:vertical;line-height:1.7}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-submit{width:100%;background:var(--ac);color:#fff;font-size:16px;
+  font-weight:800;padding:16px;border:none;border-radius:10px;cursor:pointer;
+  transition:transform .2s,background .2s;
+  box-shadow:0 4px 20px rgba(59,130,246,.4);font-family:inherit}
+.form-submit:hover{background:var(--ac2);transform:translateY(-1px)}
+.form-note{font-size:11px;color:var(--nt);text-align:center;margin-top:12px}
+
+/* SIDE INFO */
+.side-info{display:flex;flex-direction:column;gap:20px}
+.side-card{background:var(--nv2);border-radius:var(--rr);padding:28px 24px;
+  border:1px solid var(--nv3)}
+.side-card h3{font-size:15px;font-weight:800;color:#f8fafc;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px}
+.side-card-icon{font-size:18px}
+.contact-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.contact-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#94a3b8}
+.contact-list li strong{color:#f8fafc;display:block}
+.flow-mini{display:flex;flex-direction:column;gap:10px}
+.flow-mini-item{display:flex;align-items:center;gap:12px;font-size:13px;color:#94a3b8}
+.flow-mini-num{width:28px;height:28px;border-radius:50%;background:var(--ac);
+  color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0}
+
+/* THANK YOU (hidden) */
+.thanks-msg{display:none;text-align:center;padding:48px 32px}
+.thanks-msg.show{display:block}
+.thanks-icon{font-size:56px;margin-bottom:16px}
+.thanks-title{font-size:24px;font-weight:900;color:var(--nv);margin-bottom:10px}
+.thanks-desc{font-size:15px;color:var(--tx2);line-height:1.8}
+
+/* FOOTER */
+.footer{background:var(--nv);color:#64748b;padding:48px 32px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-size:16px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:800;color:#f8fafc;margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col ul li a:hover{color:#94a3b8}
+.footer-bottom{border-top:1px solid var(--nv3);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:#64748b;text-decoration:none}
+
+@media(max-width:900px){
+  .benefits{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .hdr-nav{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .section{padding:48px 20px}
+  .form-card{padding:28px 20px}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="lp.html" class="hdr-logo">
+    <span class="hdr-logo-mark">STOCK</span>
+    <span class="hdr-title">ACADEMY <em>株式大学校</em></span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="service.html">サービス</a>
+    <a href="curriculum.html">カリキュラム</a>
+    <a href="teachers.html">講師</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="blog.html">ブログ</a>
+    <a href="index.html">ダッシュボード</a>
+    <a href="contact.html" class="hdr-cta active">無料相談</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-tag">FREE CONSULTATION</div>
+  <h1>無料相談・<br>お問い合わせ</h1>
+  <p>30分の無料相談で、あなたの現状と目標を整理します。勧誘・即決は一切求めません。</p>
+</div>
+
+<section class="section">
+  <div class="section-inner">
+
+    <!-- BENEFITS -->
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">✅</div>
+        <div>
+          <div class="benefit-title">完全無料・30分</div>
+          <div class="benefit-desc">費用は一切かかりません。相談のみでも歓迎です。</div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">🚫</div>
+        <div>
+          <div class="benefit-title">勧誘・即決なし</div>
+          <div class="benefit-desc">無理な勧誘はしません。納得してから判断してください。</div>
+        </div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon">💻</div>
+        <div>
+          <div class="benefit-title">オンライン対応</div>
+          <div class="benefit-desc">Zoom・Google Meet・電話にて対応。全国どこからでも。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- FORM -->
+      <div class="form-card" id="form-wrap">
+        <div class="form-title">無料相談フォーム</div>
+        <div class="form-subtitle">ご入力いただいた情報をもとに、担当者より2営業日以内にご連絡します。</div>
+
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">お名前<span class="req">必須</span></label>
+              <input type="text" class="form-input" placeholder="山田 太郎" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">お名前（ふりがな）</label>
+              <input type="text" class="form-input" placeholder="やまだ たろう">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">メールアドレス<span class="req">必須</span></label>
+            <input type="email" class="form-input" placeholder="example@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">電話番号</label>
+            <input type="tel" class="form-input" placeholder="090-0000-0000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">投資経験<span class="req">必須</span></label>
+            <select class="form-select" required>
+              <option value="">選択してください</option>
+              <option>未経験（口座も未開設）</option>
+              <option>口座は持っているが取引経験なし</option>
+              <option>経験1年未満</option>
+              <option>経験1〜3年</option>
+              <option>経験3年以上</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ご興味のあるプラン</label>
+            <select class="form-select">
+              <option value="">選択してください</option>
+              <option>スタンダードプラン（398,000円）</option>
+              <option>エキスパートプラン（598,000円）</option>
+              <option>まだ決めていない</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ご相談内容・ご質問</label>
+            <textarea class="form-textarea" placeholder="例：副業として始めたいが投資未経験なので不安、受講後にどれくらい投資できるようになるか知りたい　など、何でもお気軽にどうぞ"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">ご希望の連絡方法</label>
+            <select class="form-select">
+              <option>メールで連絡</option>
+              <option>電話で連絡</option>
+              <option>Zoomで相談したい</option>
+            </select>
+          </div>
+
+          <button type="submit" class="form-submit">無料相談を申し込む →</button>
+          <div class="form-note">送信後、2営業日以内にメールにてご連絡します。<br>プライバシーポリシーに同意の上、送信してください。</div>
+        </form>
+
+        <div class="thanks-msg" id="thanks-msg">
+          <div class="thanks-icon">✅</div>
+          <div class="thanks-title">送信完了しました！</div>
+          <div class="thanks-desc">お問い合わせいただきありがとうございます。<br>担当者より2営業日以内にご連絡いたします。<br><br>
+            <a href="lp.html" style="color:var(--ac);font-weight:700;text-decoration:none">← トップページに戻る</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDE INFO -->
+      <div class="side-info">
+        <div class="side-card">
+          <h3><span class="side-card-icon">📋</span> 申し込み後の流れ</h3>
+          <div class="flow-mini">
+            <div class="flow-mini-item">
+              <div class="flow-mini-num">1</div>
+              <div>フォーム送信後、メールにてご確認</div>
+            </div>
+            <div class="flow-mini-item">
+              <div class="flow-mini-num">2</div>
+              <div>担当者よりご連絡（2営業日以内）</div>
+            </div>
+            <div class="flow-mini-item">
+              <div class="flow-mini-num">3</div>
+              <div>Zoom or 電話にて30分の無料相談</div>
+            </div>
+            <div class="flow-mini-item">
+              <div class="flow-mini-num">4</div>
+              <div>ご検討（即決は不要です）</div>
+            </div>
+            <div class="flow-mini-item">
+              <div class="flow-mini-num">5</div>
+              <div>入学手続き → 受講開始</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <h3><span class="side-card-icon">📞</span> 直接のお問い合わせ</h3>
+          <ul class="contact-list">
+            <li>
+              <div>✉️</div>
+              <div>
+                <strong>メール</strong>
+                info@stock-academy.co.jp<br>
+                <span style="font-size:11px">返信まで1〜2営業日</span>
+              </div>
+            </li>
+            <li>
+              <div>📅</div>
+              <div>
+                <strong>受付時間</strong>
+                平日 10:00〜18:00
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3><span class="side-card-icon">❓</span> よくある相談内容</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+            <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px"><span>▷</span>未経験でも本当に大丈夫か不安</li>
+            <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px"><span>▷</span>会社員のスケジュールと両立できるか</li>
+            <li style="font-size:13px;color:#94a3b8;display:flex;gap=8px"><span>▷</span>分割払いの詳細を知りたい</li>
+            <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px"><span>▷</span>自分の投資スタイルに合う講師は誰か</li>
+            <li style="font-size:13px;color:#94a3b8;display:flex;gap:8px"><span>▷</span>スタンダード vs エキスパートの違い</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>STOCK ACADEMY — 株式大学校</h3>
+        <p>現役トレーダー直接指導による実践型株式投資スクール。</p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">サービス概要</a></li>
+          <li><a href="curriculum.html">カリキュラム</a></li>
+          <li><a href="teachers.html">講師一覧</a></li>
+          <li><a href="contact.html">無料相談</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="index.html">株価ダッシュボード</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせフォーム</a></li>
+          <li><a href="mailto:info@stock-academy.co.jp">info@stock-academy.co.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 STOCK ACADEMY（株式大学校）All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e){
+  e.preventDefault();
+  document.getElementById('contact-form').style.display='none';
+  document.getElementById('thanks-msg').classList.add('show');
+  document.querySelector('.form-title').style.display='none';
+  document.querySelector('.form-subtitle').style.display='none';
+}
+</script>
+</body>
+</html>

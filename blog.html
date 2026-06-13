@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ブログ | STOCK ACADEMY — 株式大学校</title>
+<style>
+:root{
+  --nv:#0f172a;--nv2:#1e293b;--nv3:#334155;
+  --ac:#3b82f6;--ac2:#2563eb;
+  --gd:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --nt:#64748b;--bg:#f8fafc;--cd:#ffffff;
+  --tx:#0f172a;--tx2:#475569;--br:#e2e8f0;
+  --rr:12px;--sh:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  background:var(--bg);color:var(--tx);font-size:15px;line-height:1.7}
+.hdr{background:var(--nv);color:#fff;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;position:sticky;top:0;z-index:300;box-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.hdr-logo-mark{background:var(--ac);color:#fff;font-size:13px;font-weight:900;padding:4px 10px;border-radius:6px}
+.hdr-title{font-size:16px;font-weight:800;color:#f8fafc}
+.hdr-title em{color:var(--gd);font-style:normal}
+.hdr-nav{display:flex;align-items:center;gap:4px}
+.hdr-nav a{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.hdr-nav a:hover,.hdr-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
+.hdr-cta{background:var(--ac);color:#fff!important;border-radius:8px!important;padding:8px 18px!important;font-weight:700!important}
+.page-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:64px 32px;text-align:center}
+.page-hero-tag{display:inline-block;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93c5fd;font-size:12px;font-weight:800;padding:4px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em}
+.page-hero h1{font-size:clamp(26px,4vw,44px);font-weight:900;color:#f8fafc;margin-bottom:14px}
+.page-hero p{font-size:16px;color:#94a3b8;max-width:600px;margin:0 auto}
+.section{padding:72px 32px}
+.section-inner{max-width:1080px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(59,130,246,.1);color:var(--ac);font-size:12px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:.08em;margin-bottom:14px}
+.section-title{font-size:clamp(22px,3vw,30px);font-weight:900;color:var(--nv);line-height:1.3;margin-bottom:12px}
+.btn-primary{background:var(--ac);color:#fff;font-size:15px;font-weight:800;padding:14px 36px;border-radius:10px;text-decoration:none;transition:transform .2s;display:inline-block;box-shadow:0 4px 20px rgba(59,130,246,.4)}
+.btn-primary:hover{transform:translateY(-2px)}
+
+/* BLOG LAYOUT */
+.blog-layout{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start}
+
+/* FEATURED ARTICLE */
+.article-featured{background:#fff;border-radius:16px;border:1px solid var(--br);
+  box-shadow:var(--sh);overflow:hidden;margin-bottom:28px;
+  display:grid;grid-template-columns:1fr 1fr}
+.af-thumb{background:linear-gradient(135deg,#1e3a5f,#0f172a);
+  display:flex;align-items:center;justify-content:center;font-size:72px;
+  min-height:260px}
+.af-body{padding:32px}
+.af-cat{display:inline-block;background:rgba(59,130,246,.1);color:var(--ac);
+  font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:12px}
+.af-badge{display:inline-block;background:var(--gd);color:#fff;
+  font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;margin-left:6px}
+.af-title{font-size:20px;font-weight:800;color:var(--nv);line-height:1.4;margin-bottom:10px}
+.af-desc{font-size:14px;color:var(--tx2);line-height:1.7;margin-bottom:16px}
+.af-meta{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--nt)}
+.af-author{display:flex;align-items:center;gap:6px}
+.af-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--gd));display:flex;align-items:center;justify-content:center;font-size:12px}
+.af-read{color:var(--ac);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;margin-top:12px;font-size:14px}
+.af-read:hover{text-decoration:underline}
+
+/* ARTICLE GRID */
+.article-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.article-card{background:#fff;border-radius:var(--rr);border:1px solid var(--br);
+  box-shadow:var(--sh);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.article-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.1)}
+.ac-thumb{height:140px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.ac-thumb.t1{background:linear-gradient(135deg,#1e293b,#1e3a5f)}
+.ac-thumb.t2{background:linear-gradient(135deg,#064e3b,#065f46)}
+.ac-thumb.t3{background:linear-gradient(135deg,#78350f,#92400e)}
+.ac-thumb.t4{background:linear-gradient(135deg,#4c0519,#7f1d1d)}
+.ac-thumb.t5{background:linear-gradient(135deg,#312e81,#1e3a8a)}
+.ac-body{padding:20px}
+.ac-cat{display:inline-block;background:rgba(59,130,246,.1);color:var(--ac);
+  font-size:11px;font-weight:800;padding:2px 8px;border-radius:20px;margin-bottom:8px}
+.ac-title{font-size:15px;font-weight:800;color:var(--nv);line-height:1.4;margin-bottom:8px}
+.ac-desc{font-size:12px;color:var(--tx2);line-height:1.6;margin-bottom:12px}
+.ac-meta{font-size:11px;color:var(--nt);display:flex;justify-content:space-between}
+.ac-read{color:var(--ac);font-weight:700;text-decoration:none}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:20px}
+.sidebar-card{background:#fff;border-radius:var(--rr);border:1px solid var(--br);
+  box-shadow:var(--sh);padding:24px}
+.sidebar-card h3{font-size:14px;font-weight:800;color:var(--nv);
+  border-left:3px solid var(--ac);padding-left:10px;margin-bottom:16px}
+.cat-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.cat-list li a{color:var(--tx2);text-decoration:none;font-size:13px;
+  display:flex;justify-content:space-between;padding:6px 0;
+  border-bottom:1px solid var(--br);transition:color .2s}
+.cat-list li a:hover{color:var(--ac)}
+.cat-list li a span{color:var(--nt);font-size:12px}
+.recent-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.recent-item{display:flex;gap:10px;align-items:flex-start}
+.recent-thumb{width:52px;height:40px;border-radius:6px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px}
+.recent-thumb.r1{background:linear-gradient(135deg,#1e3a5f,#2563eb)}
+.recent-thumb.r2{background:linear-gradient(135deg,#064e3b,#10b981)}
+.recent-thumb.r3{background:linear-gradient(135deg,#78350f,#f59e0b)}
+.recent-title{font-size:12px;font-weight:700;color:var(--nv);line-height:1.4}
+.recent-date{font-size:10px;color:var(--nt);margin-top:2px}
+.cta-sidebar{background:var(--nv2);border-radius:var(--rr);padding:24px;text-align:center;border:1px solid var(--nv3)}
+.cta-sidebar h3{font-size:15px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.cta-sidebar p{font-size:12px;color:#94a3b8;margin-bottom:16px}
+.cta-sidebar a{display:block;background:var(--ac);color:#fff;font-size:13px;font-weight:800;padding:12px;border-radius:8px;text-decoration:none}
+.cta-sidebar a:hover{background:var(--ac2)}
+
+/* ARTICLE PAGE MODAL (simple inline article) */
+.article-page{display:none;max-width:760px;margin:0 auto}
+.article-page.show{display:block}
+.article-page-back{color:var(--ac);font-weight:700;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:24px;font-size:14px}
+.article-page-back:hover{text-decoration:underline}
+.article-page h1{font-size:clamp(22px,3vw,32px);font-weight:900;color:var(--nv);
+  line-height:1.4;margin-bottom:16px}
+.article-meta{display:flex;align-items:center;gap:14px;font-size:13px;
+  color:var(--nt);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--br)}
+.article-body h2{font-size:20px;font-weight:800;color:var(--nv);
+  margin:32px 0 14px;border-left:4px solid var(--ac);padding-left:14px}
+.article-body h3{font-size:17px;font-weight:800;color:var(--nv);margin:24px 0 10px}
+.article-body p{font-size:15px;color:var(--tx2);line-height:1.85;margin-bottom:16px}
+.article-body ul{padding-left:20px;margin-bottom:16px}
+.article-body ul li{font-size:14px;color:var(--tx2);line-height:1.7;margin-bottom:6px}
+.article-body .highlight{background:rgba(59,130,246,.08);border-left:4px solid var(--ac);
+  padding:16px 20px;border-radius:0 8px 8px 0;margin:20px 0;
+  font-size:14px;color:var(--tx);line-height:1.8}
+.article-body table{width:100%;border-collapse:collapse;margin:20px 0;
+  border-radius:var(--rr);overflow:hidden;box-shadow:var(--sh)}
+.article-body th{background:var(--nv);color:#fff;padding:12px 16px;text-align:left;font-size:13px}
+.article-body td{padding:12px 16px;font-size:13px;color:var(--tx2);
+  border-bottom:1px solid var(--br)}
+.article-body tr:last-child td{border-bottom:none}
+
+/* FOOTER */
+.footer{background:var(--nv);color:#64748b;padding:48px 32px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-size:16px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:800;color:#f8fafc;margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col ul li a:hover{color:#94a3b8}
+.footer-bottom{border-top:1px solid var(--nv3);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:#64748b;text-decoration:none}
+
+@media(max-width:900px){
+  .blog-layout{grid-template-columns:1fr}
+  .article-featured{grid-template-columns:1fr}
+  .af-thumb{min-height:180px}
+  .article-grid{grid-template-columns:1fr}
+  .hdr-nav{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .section{padding:48px 20px}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="lp.html" class="hdr-logo">
+    <span class="hdr-logo-mark">STOCK</span>
+    <span class="hdr-title">ACADEMY <em>株式大学校</em></span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="service.html">サービス</a>
+    <a href="curriculum.html">カリキュラム</a>
+    <a href="teachers.html">講師</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="blog.html" class="active">ブログ</a>
+    <a href="index.html">ダッシュボード</a>
+    <a href="contact.html" class="hdr-cta">無料相談</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-tag">BLOG</div>
+  <h1>株式投資ブログ</h1>
+  <p>現役トレーダー講師が執筆する、実践で使える株式投資の知識をお届けします。</p>
+</div>
+
+<!-- BLOG LIST -->
+<section class="section" id="blog-list">
+  <div class="section-inner">
+    <div class="blog-layout">
+      <!-- MAIN CONTENT -->
+      <div>
+        <!-- FEATURED -->
+        <div class="article-featured">
+          <div class="af-thumb">📊</div>
+          <div class="af-body">
+            <div>
+              <span class="af-cat">テクニカル分析</span>
+              <span class="af-badge">NEW</span>
+            </div>
+            <div class="af-title">RSIを使って「売られすぎ銘柄」を見つける方法 — 具体的な手順と注意点</div>
+            <div class="af-desc">RSI（相対力指数）は投資初心者がまず覚えるべきオシレーター指標のひとつ。しかし「30以下が買いサイン」という単純な理解では大きな損失につながることも。本記事では、実際のトレードで使えるRSIの読み方を解説します。</div>
+            <div class="af-meta">
+              <div class="af-author">
+                <div class="af-avatar">📊</div>
+                田中 大輝
+              </div>
+              <span>2026年6月9日</span>
+              <span>読了 約8分</span>
+            </div>
+            <a class="af-read" href="#" onclick="showArticle('article1',event)">続きを読む →</a>
+          </div>
+        </div>
+
+        <!-- ARTICLE GRID -->
+        <div class="article-grid">
+          <div class="article-card">
+            <div class="ac-thumb t2">📋</div>
+            <div class="ac-body">
+              <span class="ac-cat">ファンダメンタルズ</span>
+              <div class="ac-title">PER・PBRだけで判断してはいけない理由 — 業種別バリュエーションの見方</div>
+              <div class="ac-desc">同じPER20倍でも、成長率が違えば評価は全く異なります。銀行株と成長IT株を同じ指標で比べることの危険性を解説します。</div>
+              <div class="ac-meta">
+                <span>山本 梓 ・ 2026年5月28日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article2',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="ac-thumb t3">🚀</div>
+            <div class="ac-body">
+              <span class="ac-cat">成長株投資</span>
+              <div class="ac-title">テンバガー（10倍株）に共通する7つの特徴 — 私が12年で発掘した銘柄から学ぶ</div>
+              <div class="ac-desc">過去12年で7銘柄のテンバガーを発掘してきた私が、共通パターンをデータで解説します。早期発見のための視点とは？</div>
+              <div class="ac-meta">
+                <span>佐藤 健一 ・ 2026年5月20日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article3',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="ac-thumb t4">💰</div>
+            <div class="ac-body">
+              <span class="ac-cat">配当投資</span>
+              <div class="ac-title">新NISA × 高配当株で月10万円の配当収入を得る具体的な計算と銘柄選びの基準</div>
+              <div class="ac-desc">新NISAの非課税枠を最大限活用した高配当株投資。月10万円の配当収入を目指すためのポートフォリオ構築法を数字で解説。</div>
+              <div class="ac-meta">
+                <span>鈴木 美里 ・ 2026年5月12日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article4',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="ac-thumb t5">🧠</div>
+            <div class="ac-body">
+              <span class="ac-cat">投資メンタル</span>
+              <div class="ac-title">損切りができない人に共通する「3つの思考パターン」とその克服法</div>
+              <div class="ac-desc">含み損を抱えたまま何ヶ月も持ち続ける——投資家なら誰もが経験するこの行動の根本原因と、ルールで解決する方法を解説。</div>
+              <div class="ac-meta">
+                <span>田中 大輝 ・ 2026年5月5日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article5',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="ac-thumb t1">📈</div>
+            <div class="ac-body">
+              <span class="ac-cat">初心者向け</span>
+              <div class="ac-title">株式投資を始める前に知っておくべき5つのこと — 口座開設前に読む基礎知識</div>
+              <div class="ac-desc">証券会社の選び方、最初の入金額の目安、税金の仕組み、やってはいけない取引パターンまで、始める前に必ず読んでほしい記事です。</div>
+              <div class="ac-meta">
+                <span>山本 梓 ・ 2026年4月25日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article6',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="article-card">
+            <div class="ac-thumb t2">📑</div>
+            <div class="ac-body">
+              <span class="ac-cat">ポートフォリオ</span>
+              <div class="ac-title">資産1,000万円を目指す人のポートフォリオ設計 — セクター分散と配分比率の考え方</div>
+              <div class="ac-desc">ゼロから1,000万円を目指す個人投資家が意識すべきセクター分散と最適な資産配分比率を、具体的な数値で解説します。</div>
+              <div class="ac-meta">
+                <span>佐藤 健一 ・ 2026年4月18日</span>
+                <a class="ac-read" href="#" onclick="showArticle('article7',event)">読む →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="sidebar">
+        <div class="sidebar-card">
+          <h3>カテゴリー</h3>
+          <ul class="cat-list">
+            <li><a href="#">テクニカル分析<span>12</span></a></li>
+            <li><a href="#">ファンダメンタルズ<span>9</span></a></li>
+            <li><a href="#">成長株投資<span>7</span></a></li>
+            <li><a href="#">配当投資<span>8</span></a></li>
+            <li><a href="#">ポートフォリオ<span>6</span></a></li>
+            <li><a href="#">投資メンタル<span>4</span></a></li>
+            <li><a href="#">初心者向け<span>5</span></a></li>
+            <li><a href="#">NISA・iDeCo<span>5</span></a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>最近の記事</h3>
+          <ul class="recent-list">
+            <li class="recent-item">
+              <div class="recent-thumb r1">📊</div>
+              <div>
+                <div class="recent-title">RSIで売られすぎ銘柄を見つける方法</div>
+                <div class="recent-date">2026年6月9日</div>
+              </div>
+            </li>
+            <li class="recent-item">
+              <div class="recent-thumb r2">📋</div>
+              <div>
+                <div class="recent-title">PER・PBRだけで判断してはいけない理由</div>
+                <div class="recent-date">2026年5月28日</div>
+              </div>
+            </li>
+            <li class="recent-item">
+              <div class="recent-thumb r3">🚀</div>
+              <div>
+                <div class="recent-title">テンバガーに共通する7つの特徴</div>
+                <div class="recent-date">2026年5月20日</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cta-sidebar">
+          <h3>投資を体系的に学ぶ</h3>
+          <p>ブログの知識を実戦で活かすなら、個別サポート付きのスクールへ。</p>
+          <a href="contact.html">無料相談を申し込む</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLE DETAIL (inline) -->
+<section class="section" id="article-detail" style="display:none">
+  <div class="section-inner" style="max-width:800px">
+
+    <!-- ARTICLE 1 -->
+    <div class="article-page" id="article1">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">テクニカル分析</span>
+      <h1 style="margin-top:12px">RSIを使って「売られすぎ銘柄」を見つける方法 — 具体的な手順と注意点</h1>
+      <div class="article-meta">
+        <span>📊 田中 大輝</span>
+        <span>2026年6月9日</span>
+        <span>読了 約8分</span>
+      </div>
+      <div class="article-body">
+        <p>RSI（Relative Strength Index・相対力指数）は、株価の強弱を0〜100で表すオシレーター系指標です。一般に「RSI 30以下が売られすぎ（買いサイン）、70以上が買われすぎ（売りサイン）」と言われますが、これだけで売買判断をするのは非常に危険です。</p>
+
+        <h2>RSIとは何か</h2>
+        <p>RSIは、一定期間（一般的に14日間）における「上昇した日の値幅の合計」と「下落した日の値幅の合計」の比率から算出されます。計算式は以下の通りです：</p>
+        <div class="highlight">RSI = 100 - (100 ÷ (1 + RS))<br>RS = 14日間の平均上昇幅 ÷ 14日間の平均下落幅</div>
+        <p>RSIが低いほど最近の下落が大きく、高いほど上昇が強いことを示します。</p>
+
+        <h2>「RSI30以下 = 買い」が危険な理由</h2>
+        <p>多くの初心者がやりがちなミスは、RSIが30を下回ったからといってすぐに買いポジションを取ることです。</p>
+        <ul>
+          <li>下降トレンド中の銘柄はRSI20台、10台まで下落し続けることがある</li>
+          <li>ファンダメンタルズが悪化している銘柄は安値から更に安値を更新する</li>
+          <li>RSI単体では「なぜ売られているか」の原因はわからない</li>
+        </ul>
+        <p>RSIはあくまで「現在の相場の勢いが偏っている」ことを示すサインに過ぎません。</p>
+
+        <h2>実戦でのRSI活用法（3ステップ）</h2>
+        <h3>Step 1：まずファンダメンタルズで銘柄を絞る</h3>
+        <p>AI株価ダッシュボードでスコアが高く、PBRが1倍以下・配当利回り3%以上の銘柄をスクリーニング。財務的に健全で「本来の価値より安い」銘柄候補を先に絞ります。</p>
+
+        <h3>Step 2：RSIと移動平均線を組み合わせる</h3>
+        <p>絞った銘柄のRSIを確認。RSIが30〜40台かつ25日移動平均線からのかい離率がマイナス10%以上であれば、「反発の可能性が高い過売り状態」と判断できます。</p>
+
+        <h3>Step 3：出来高の変化で確認する</h3>
+        <p>底打ちのサインは「価格が下落しているのに出来高が減少している」状態です。売りが枯渇しつつある証拠です。逆に出来高急増して下落が継続している場合は、機関投資家の売りが続いている可能性があり注意が必要です。</p>
+
+        <h2>STOCK ACADEMYのダッシュボードでの使い方</h2>
+        <p>AI株価ダッシュボードでは、100銘柄以上のRSI値が一覧で確認できます。RSI列をクリックすることでソートでき、RSIが30台の銘柄を素早くピックアップできます。さらにPBR・配当利回り・スコアも同画面で確認できるため、上記の3ステップを一画面で完結できます。</p>
+
+        <div class="highlight">📌 まとめ：RSIは「最初の絞り込み」に使う指標。ファンダメンタルズで選んだ銘柄の「買いタイミング」を見極めるためのひとつの根拠として活用しましょう。</div>
+      </div>
+    </div>
+
+    <!-- ARTICLE 2 -->
+    <div class="article-page" id="article2">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">ファンダメンタルズ</span>
+      <h1 style="margin-top:12px">PER・PBRだけで判断してはいけない理由 — 業種別バリュエーションの見方</h1>
+      <div class="article-meta">
+        <span>📋 山本 梓</span><span>2026年5月28日</span><span>読了 約7分</span>
+      </div>
+      <div class="article-body">
+        <p>「PERが10倍以下だから割安」「PBRが1倍以下だから買い」という判断をしていませんか？実は業種によってPER・PBRの適正水準は大きく異なります。同じ指標でも、比較対象を間違えると全く逆の判断をしてしまうことがあります。</p>
+
+        <h2>業種別PER適正水準の例</h2>
+        <table>
+          <thead><tr><th>業種</th><th>PER適正水準</th><th>理由</th></tr></thead>
+          <tbody>
+            <tr><td>銀行・保険</td><td>8〜12倍</td><td>成長性低・高配当・規制業種</td></tr>
+            <tr><td>製造業（大手）</td><td>12〜18倍</td><td>安定収益・中程度の成長</td></tr>
+            <tr><td>IT・ソフトウェア</td><td>25〜50倍</td><td>高成長期待・将来収益を先行評価</td></tr>
+            <tr><td>バイオ・医薬品</td><td>30〜100倍以上</td><td>パイプライン価値・成功確率の割引</td></tr>
+          </tbody>
+        </table>
+        <p>銀行株のPERが25倍なら「割高」、ITスタートアップのPERが25倍なら「むしろ割安かもしれない」という判断になります。</p>
+
+        <h2>同業他社比較が最も有効</h2>
+        <p>正しいバリュエーション評価は、同業他社との比較で行います。「業界平均PERより低いか高いか」「過去5年のPERレンジの中でどこにいるか」を確認しましょう。</p>
+
+        <div class="highlight">📌 ポイント：PERは「絶対値」ではなく「同業他社・過去レンジとの相対値」で判断する。まず業界を決め、その中で比較する習慣をつけましょう。</div>
+      </div>
+    </div>
+
+    <!-- SHORT ARTICLES 3-7 -->
+    <div class="article-page" id="article3">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">成長株投資</span>
+      <h1 style="margin-top:12px">テンバガー（10倍株）に共通する7つの特徴</h1>
+      <div class="article-meta"><span>🚀 佐藤 健一</span><span>2026年5月20日</span></div>
+      <div class="article-body">
+        <p>私が12年間で発掘した7銘柄のテンバガーを振り返ると、必ず共通する特徴があります。①市場がまだ小さい（TAM拡大余地がある）、②競合がいない or 圧倒的優位性がある、③経営者が株主でもある（インサイダー保有率高）、④売上成長率30%超が続いている、⑤利益率が改善基調にある、⑥機関投資家保有比率がまだ低い、⑦自己資本比率60%超で財務盤石——この7点が全て揃っている銘柄を見つけた時は、信念を持って長期保有する価値があります。</p>
+        <div class="highlight">📌 テンバガーの多くは「誰も注目していない小型株」の段階で存在しています。まずグロース市場・マザーズから宝探しを始めましょう。</div>
+      </div>
+    </div>
+
+    <div class="article-page" id="article4">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">配当投資</span>
+      <h1 style="margin-top:12px">新NISA × 高配当株で月10万円の配当収入を得る計算と銘柄選びの基準</h1>
+      <div class="article-meta"><span>💰 鈴木 美里</span><span>2026年5月12日</span></div>
+      <div class="article-body">
+        <p>月10万円の配当収入（年120万円）を得るために必要な元手は、平均配当利回り4%の場合で3,000万円です。新NISAの年間360万円（成長投資枠240万円+つみたて投資枠120万円）を最大活用し、10年で3,600万円の枠を使えば非課税で達成できます。</p>
+        <p>銘柄選びの基準は①配当利回り3.5%以上、②配当性向50%以下（増配余地がある）、③10年以上の連続増配実績、④自己資本比率40%以上、⑤フリーキャッシュフローがプラス——この5点を満たす銘柄を中心に構築します。</p>
+        <div class="highlight">📌 配当投資の最大の武器は「複利と時間」。配当を再投資し続けることで、10年後の速度が全く変わります。早く始めるほど有利です。</div>
+      </div>
+    </div>
+
+    <div class="article-page" id="article5">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">投資メンタル</span>
+      <h1 style="margin-top:12px">損切りができない人に共通する「3つの思考パターン」とその克服法</h1>
+      <div class="article-meta"><span>📊 田中 大輝</span><span>2026年5月5日</span></div>
+      <div class="article-body">
+        <p>損切りができない理由は意志の弱さではなく、認知バイアスによるものです。①損失回避バイアス（損の痛みは利益の喜びの2倍感じる）、②サンクコスト効果（「ここまで下がったんだから戻るはず」という思考）、③確証バイアス（自分の判断を肯定する情報だけを集める）——これら3つが複合的に作用します。</p>
+        <p>克服法は「ルールで解決する」こと。「-8%になったら自動的に売る」というルールを事前に設定し、感情が入る余地をなくします。トレード日誌で損切りした後の株価を継続追跡すると「損切りしてよかった」という体験が蓄積され、習慣が変わります。</p>
+        <div class="highlight">📌 損切りは「失敗」ではなく「計画通りのリスク管理」。このマインドセットの転換が最初の壁です。</div>
+      </div>
+    </div>
+
+    <div class="article-page" id="article6">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">初心者向け</span>
+      <h1 style="margin-top:12px">株式投資を始める前に知っておくべき5つのこと</h1>
+      <div class="article-meta"><span>📋 山本 梓</span><span>2026年4月25日</span></div>
+      <div class="article-body">
+        <p>①生活防衛資金（生活費6ヶ月分）を確保してから始める。②証券口座は大手ネット証券（SBI・楽天・マネックス）を選ぶ。手数料・ツール・銘柄数を比較検討。③最初の1年は少額（10万円以下）で経験を積む。④税金の仕組みを理解する（特定口座源泉徴収ありが初心者向け）。⑤絶対に信用取引・レバレッジETFは使わない。</p>
+        <div class="highlight">📌 投資は「余剰資金」で行うのが鉄則。生活費や緊急資金を投資に回すと、下落時に感情的な判断をしてしまいます。</div>
+      </div>
+    </div>
+
+    <div class="article-page" id="article7">
+      <a class="article-page-back" href="#" onclick="showList(event)">← 記事一覧に戻る</a>
+      <span class="ac-cat">ポートフォリオ</span>
+      <h1 style="margin-top:12px">資産1,000万円を目指す人のポートフォリオ設計</h1>
+      <div class="article-meta"><span>🚀 佐藤 健一</span><span>2026年4月18日</span></div>
+      <div class="article-body">
+        <p>1,000万円を目指す段階では「集中」よりも「継続できる分散」が重要です。推奨比率は：国内成長株30%（3〜5銘柄）、国内高配当・バリュー株30%（4〜6銘柄）、インデックスファンド・ETF25%（iDeCo・NISA活用）、キャッシュ15%（買い増し・リバランス用）。</p>
+        <p>銘柄数は最大10〜12銘柄を目安に。それ以上に分散するとポートフォリオ管理が困難になり、逆に集中リスクも軽減されにくくなります。</p>
+        <div class="highlight">📌 ポートフォリオは「作って終わり」ではなく、半年ごとのリバランスが必要です。当初の配分比率から大きくずれたら調整しましょう。</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>STOCK ACADEMY — 株式大学校</h3>
+        <p>現役トレーダー直接指導による実践型株式投資スクール。</p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">サービス概要</a></li>
+          <li><a href="curriculum.html">カリキュラム</a></li>
+          <li><a href="teachers.html">講師一覧</a></li>
+          <li><a href="contact.html">無料相談</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="index.html">株価ダッシュボード</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせフォーム</a></li>
+          <li><a href="mailto:info@stock-academy.co.jp">info@stock-academy.co.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 STOCK ACADEMY（株式大学校）All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showArticle(id, e){
+  e && e.preventDefault();
+  document.getElementById('blog-list').style.display='none';
+  document.getElementById('article-detail').style.display='block';
+  document.querySelectorAll('.article-page').forEach(el=>el.classList.remove('show'));
+  document.getElementById(id).classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showList(e){
+  e && e.preventDefault();
+  document.getElementById('blog-list').style.display='block';
+  document.getElementById('article-detail').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

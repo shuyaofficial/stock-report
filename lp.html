@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STOCK ACADEMY — 現役トレーダーが教える実践型株式投資スクール</title>
+<style>
+:root{
+  --nv:#0f172a;--nv2:#1e293b;--nv3:#334155;
+  --ac:#3b82f6;--ac2:#2563eb;
+  --gd:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --nt:#64748b;--bg:#f8fafc;--cd:#ffffff;
+  --tx:#0f172a;--tx2:#475569;--br:#e2e8f0;
+  --rr:12px;--sh:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  background:var(--bg);color:var(--tx);font-size:15px;line-height:1.7}
+
+/* ====== HEADER ====== */
+.hdr{background:var(--nv);color:#fff;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;position:sticky;top:0;z-index:300;
+  box-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.hdr-logo-mark{background:var(--ac);color:#fff;font-size:13px;font-weight:900;
+  padding:4px 10px;border-radius:6px;letter-spacing:.04em}
+.hdr-title{font-size:16px;font-weight:800;color:#f8fafc;letter-spacing:.04em}
+.hdr-title em{color:var(--gd);font-style:normal}
+.hdr-nav{display:flex;align-items:center;gap:4px}
+.hdr-nav a{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:600;
+  padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.hdr-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.hdr-cta{background:var(--ac);color:#fff!important;border-radius:8px!important;
+  padding:8px 18px!important;font-weight:700!important}
+.hdr-cta:hover{background:var(--ac2)!important}
+
+/* ====== HERO ====== */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f2044 100%);
+  padding:80px 32px 90px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-10%;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(59,130,246,.15) 0%,transparent 70%);
+  pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;right:-5%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,158,11,.1) 0%,transparent 70%);
+  pointer-events:none}
+.hero-tag{display:inline-block;background:rgba(59,130,246,.2);
+  border:1px solid rgba(59,130,246,.4);color:#93c5fd;
+  font-size:13px;font-weight:700;padding:6px 18px;border-radius:20px;
+  margin-bottom:24px;letter-spacing:.06em}
+.hero h1{font-size:clamp(28px,5vw,52px);font-weight:900;color:#f8fafc;
+  line-height:1.25;margin-bottom:20px;position:relative}
+.hero h1 em{color:var(--gd);font-style:normal;display:block}
+.hero-sub{font-size:clamp(14px,2vw,18px);color:#94a3b8;
+  max-width:620px;margin:0 auto 36px;line-height:1.8}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-primary{background:var(--ac);color:#fff;font-size:16px;font-weight:800;
+  padding:16px 40px;border-radius:10px;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;border:none;cursor:pointer;
+  box-shadow:0 4px 20px rgba(59,130,246,.4)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(59,130,246,.5)}
+.btn-outline{background:transparent;color:#f8fafc;font-size:16px;font-weight:700;
+  padding:16px 36px;border-radius:10px;text-decoration:none;
+  border:2px solid rgba(255,255,255,.3);transition:all .2s}
+.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;
+  margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1);position:relative}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:36px;font-weight:900;color:#f8fafc;line-height:1}
+.hero-stat-num span{color:var(--gd)}
+.hero-stat-label{font-size:12px;color:#64748b;margin-top:4px;font-weight:600}
+
+/* ====== SECTION ====== */
+.section{padding:72px 32px}
+.section-inner{max-width:1080px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(59,130,246,.1);
+  color:var(--ac);font-size:12px;font-weight:800;padding:4px 14px;
+  border-radius:20px;letter-spacing:.08em;margin-bottom:14px}
+.section-title{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--nv);
+  line-height:1.3;margin-bottom:12px}
+.section-lead{font-size:16px;color:var(--tx2);max-width:680px;line-height:1.8}
+.section-center{text-align:center}
+.section-center .section-lead{margin:0 auto}
+.section.dark{background:var(--nv);color:#fff}
+.section.dark .section-title{color:#f8fafc}
+.section.dark .section-lead{color:#94a3b8}
+.section.gray{background:#f1f5f9}
+
+/* ====== PROBLEM ====== */
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.problem-card{background:#fff;border-radius:var(--rr);padding:28px 24px;
+  border:1px solid var(--br);box-shadow:var(--sh);position:relative;overflow:hidden}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--rd)}
+.problem-num{font-size:32px;font-weight:900;color:#fee2e2;margin-bottom:10px;line-height:1}
+.problem-title{font-size:16px;font-weight:800;color:var(--nv);margin-bottom:8px}
+.problem-desc{font-size:13px;color:var(--tx2);line-height:1.7}
+
+/* ====== FEATURES ====== */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.feature-card{background:var(--nv2);border-radius:var(--rr);padding:32px 28px;
+  border:1px solid var(--nv3);position:relative;overflow:hidden}
+.feature-card::after{content:'';position:absolute;bottom:0;left:0;
+  width:100%;height:3px;background:linear-gradient(90deg,var(--ac),var(--gd))}
+.feature-icon{font-size:36px;margin-bottom:16px}
+.feature-num{font-size:11px;font-weight:800;color:var(--ac);letter-spacing:.1em;margin-bottom:10px}
+.feature-title{font-size:18px;font-weight:800;color:#f8fafc;margin-bottom:10px}
+.feature-desc{font-size:13px;color:#94a3b8;line-height:1.7}
+
+/* ====== HOW IT WORKS ====== */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:48px;position:relative}
+.how-grid::before{content:'';position:absolute;top:40px;left:calc(16.67%);
+  right:calc(16.67%);height:2px;background:linear-gradient(90deg,var(--ac),var(--gd));
+  z-index:0}
+.how-step{text-align:center;padding:24px 20px;position:relative;z-index:1}
+.how-circle{width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ac),var(--ac2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;margin:0 auto 16px;box-shadow:0 4px 16px rgba(59,130,246,.4)}
+.how-num{font-size:11px;font-weight:800;color:var(--ac);letter-spacing:.08em;margin-bottom:8px}
+.how-title{font-size:16px;font-weight:800;color:var(--nv);margin-bottom:8px}
+.how-desc{font-size:13px;color:var(--tx2);line-height:1.7}
+
+/* ====== TRIO ====== */
+.trio-wrap{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:16px;align-items:center;margin-top:48px}
+.trio-card{background:var(--nv2);border-radius:var(--rr);padding:32px 24px;
+  text-align:center;border:1px solid var(--nv3)}
+.trio-icon{font-size:48px;margin-bottom:14px}
+.trio-role{font-size:11px;font-weight:800;color:var(--ac);letter-spacing:.08em;margin-bottom:8px}
+.trio-name{font-size:18px;font-weight:800;color:#f8fafc;margin-bottom:10px}
+.trio-desc{font-size:12px;color:#94a3b8;line-height:1.7}
+.trio-arrow{font-size:32px;color:var(--ac);font-weight:900;text-align:center}
+
+/* ====== CURRICULUM ====== */
+.curriculum-steps{display:flex;flex-direction:column;gap:20px;margin-top:48px}
+.curriculum-step{background:#fff;border-radius:var(--rr);padding:28px 32px;
+  border:1px solid var(--br);box-shadow:var(--sh);
+  display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start}
+.cs-num{width:52px;height:52px;border-radius:12px;
+  background:linear-gradient(135deg,var(--ac),var(--ac2));
+  color:#fff;font-size:20px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cs-phase{font-size:11px;font-weight:800;color:var(--ac);letter-spacing:.08em;margin-bottom:6px}
+.cs-title{font-size:18px;font-weight:800;color:var(--nv);margin-bottom:8px}
+.cs-desc{font-size:13px;color:var(--tx2);line-height:1.7;margin-bottom:12px}
+.cs-tags{display:flex;flex-wrap:wrap;gap:6px}
+.cs-tag{background:rgba(59,130,246,.1);color:var(--ac);
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+
+/* ====== TEACHERS ====== */
+.teachers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.teacher-card{background:#fff;border-radius:var(--rr);padding:28px 20px;
+  text-align:center;border:1px solid var(--br);box-shadow:var(--sh);
+  transition:transform .2s,box-shadow .2s}
+.teacher-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.teacher-avatar{width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ac),var(--gd));
+  display:flex;align-items:center;justify-content:center;
+  font-size:32px;margin:0 auto 16px}
+.teacher-name{font-size:16px;font-weight:800;color:var(--nv);margin-bottom:4px}
+.teacher-role{font-size:11px;font-weight:700;color:var(--ac);margin-bottom:10px}
+.teacher-desc{font-size:12px;color:var(--tx2);line-height:1.7;margin-bottom:14px}
+.teacher-stat{display:flex;justify-content:center;gap:12px}
+.teacher-stat-item{text-align:center}
+.teacher-stat-num{font-size:18px;font-weight:900;color:var(--gr)}
+.teacher-stat-label{font-size:10px;color:var(--nt)}
+
+/* ====== RESULTS ====== */
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.result-card{text-align:center;padding:32px 20px;background:var(--nv2);
+  border-radius:var(--rr);border:1px solid var(--nv3)}
+.result-num{font-size:42px;font-weight:900;color:var(--gd);line-height:1}
+.result-unit{font-size:16px}
+.result-label{font-size:13px;color:#94a3b8;margin-top:8px;line-height:1.5}
+
+/* ====== VOICE ====== */
+.voices-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.voice-card{background:#fff;border-radius:var(--rr);padding:28px;
+  border:1px solid var(--br);box-shadow:var(--sh);position:relative}
+.voice-card::before{content:'"';font-size:80px;color:#e2e8f0;font-family:serif;
+  position:absolute;top:8px;left:16px;line-height:1}
+.voice-text{font-size:14px;color:var(--tx);line-height:1.8;margin-bottom:18px;
+  margin-top:32px;font-style:italic}
+.voice-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--br);padding-top:14px}
+.voice-avatar{width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ac),var(--gd));
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.voice-info{font-size:12px}
+.voice-name{font-weight:800;color:var(--nv)}
+.voice-attr{color:var(--nt)}
+.voice-result{font-size:13px;font-weight:700;color:var(--gr);margin-top:2px}
+
+/* ====== PRICING ====== */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:760px;
+  margin:48px auto 0}
+.price-card{background:#fff;border-radius:16px;padding:36px 32px;
+  border:2px solid var(--br);box-shadow:var(--sh);position:relative}
+.price-card.featured{border-color:var(--ac);
+  box-shadow:0 4px 24px rgba(59,130,246,.25)}
+.price-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--ac),var(--gd));
+  color:#fff;font-size:12px;font-weight:800;padding:4px 18px;border-radius:20px;
+  white-space:nowrap}
+.price-plan{font-size:13px;font-weight:800;color:var(--nt);
+  letter-spacing:.08em;margin-bottom:12px}
+.price-amount{font-size:38px;font-weight:900;color:var(--nv);line-height:1;margin-bottom:4px}
+.price-amount span{font-size:16px;font-weight:600}
+.price-period{font-size:12px;color:var(--nt);margin-bottom:24px}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.price-features li{display:flex;align-items:flex-start;gap:8px;font-size:14px;color:var(--tx2)}
+.price-features li::before{content:'✓';color:var(--gr);font-weight:900;flex-shrink:0;margin-top:1px}
+.price-btn{display:block;text-align:center;padding:14px;border-radius:10px;
+  font-size:15px;font-weight:800;text-decoration:none;transition:all .2s}
+.price-btn-primary{background:var(--ac);color:#fff;box-shadow:0 4px 14px rgba(59,130,246,.4)}
+.price-btn-primary:hover{background:var(--ac2)}
+.price-btn-outline{background:transparent;color:var(--ac);border:2px solid var(--ac)}
+.price-btn-outline:hover{background:rgba(59,130,246,.08)}
+.price-note{text-align:center;margin-top:16px;font-size:12px;color:var(--nt)}
+
+/* ====== FAQ ====== */
+.faq-list{max-width:760px;margin:40px auto 0;display:flex;flex-direction:column;gap:12px}
+.faq-item{background:#fff;border-radius:var(--rr);border:1px solid var(--br);overflow:hidden}
+.faq-q{padding:18px 24px;font-size:15px;font-weight:700;color:var(--nv);
+  cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-q-text::before{content:'Q. ';color:var(--ac);font-weight:900}
+.faq-icon{color:var(--ac);font-size:20px;transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{padding:0 24px 18px;font-size:14px;color:var(--tx2);line-height:1.8;
+  display:none;border-top:1px solid var(--br);padding-top:14px}
+.faq-item.open .faq-a{display:block}
+.faq-a-prefix{color:var(--gr);font-weight:800}
+
+/* ====== CTA BANNER ====== */
+.cta-banner{background:linear-gradient(135deg,#1e3a5f,#0f172a);
+  padding:72px 32px;text-align:center}
+.cta-banner h2{font-size:clamp(24px,4vw,38px);font-weight:900;color:#f8fafc;
+  margin-bottom:14px;line-height:1.3}
+.cta-banner p{font-size:16px;color:#94a3b8;max-width:560px;margin:0 auto 36px}
+
+/* ====== FOOTER ====== */
+.footer{background:var(--nv);color:#64748b;padding:48px 32px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-size:16px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:800;color:#f8fafc;margin-bottom:14px;letter-spacing:.04em}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col ul li a:hover{color:#94a3b8}
+.footer-bottom{border-top:1px solid var(--nv3);padding-top:20px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:#64748b;text-decoration:none}
+.footer-links a:hover{color:#94a3b8}
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:900px){
+  .problem-grid,.features-grid{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr;gap:24px}
+  .how-grid::before{display:none}
+  .trio-wrap{grid-template-columns:1fr;gap:16px}
+  .trio-arrow{transform:rotate(90deg)}
+  .teachers-grid{grid-template-columns:1fr 1fr}
+  .results-grid{grid-template-columns:1fr 1fr}
+  .voices-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .hdr-nav{display:none}
+}
+@media(max-width:600px){
+  .hero{padding:48px 20px 56px}
+  .section{padding:48px 20px}
+  .hero-stats{gap:20px}
+  .teachers-grid{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr 1fr}
+  .footer-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <a href="lp.html" class="hdr-logo">
+    <span class="hdr-logo-mark">STOCK</span>
+    <span class="hdr-title">ACADEMY <em>株式大学校</em></span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="service.html">サービス</a>
+    <a href="curriculum.html">カリキュラム</a>
+    <a href="teachers.html">講師</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="blog.html">ブログ</a>
+    <a href="index.html">ダッシュボード</a>
+    <a href="contact.html" class="hdr-cta">無料相談</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">現役トレーダー直接指導 · 超実践型株式投資スクール</div>
+  <h1>投資で<em>結果を出す「型」</em>を、1年で習得する。</h1>
+  <p class="hero-sub">
+    元証券アナリストと現役トレーダーが「三人一組」で完全個別サポート。
+    テクニカル・ファンダメンタルズ両輪の実践カリキュラムで、
+    再現性のある投資家へ。
+  </p>
+  <div class="hero-btns">
+    <a href="contact.html" class="btn-primary">無料相談を申し込む</a>
+    <a href="service.html" class="btn-outline">サービスを詳しく見る</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>82</span>%</div>
+      <div class="hero-stat-label">1期生の黒字化達成率</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>+47</span>%</div>
+      <div class="hero-stat-label">受講生の平均ポートフォリオ収益率</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>380</span>名</div>
+      <div class="hero-stat-label">受講生数（累計）</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num"><span>4</span>名</div>
+      <div class="hero-stat-label">現役プロトレーダー講師</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="section-tag">PROBLEM</div>
+      <h2 class="section-title">独学では乗り越えられない<br>「3つの壁」</h2>
+      <p class="section-lead">株式投資を始めても多くの人が躓くポイントがあります。<br>STOCK ACADEMYはその全てに答えます。</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-title">情報が多すぎて何から始めていいかわからない</div>
+        <div class="problem-desc">YouTube・書籍・SNS…情報は溢れているのに、どれが正しくてどの順番で学べばいいかわからない。結局、手当たり次第に試して時間とお金を失う。</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-title">損失が出ても原因を分析できない</div>
+        <div class="problem-desc">買ったら下がる、売ったら上がる。「なぜ」を言語化できないから同じ失敗を繰り返す。感情に流されてルールを守れないのは知識の問題ではなく仕組みの問題。</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-title">一人だと継続できない</div>
+        <div class="problem-desc">相場は毎日動く。一人で情報収集・分析・意思決定をこなし続けることは難しく、気づけば口座を放置してしまっている。環境と習慣づくりが最重要課題。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section dark">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">FEATURES</div>
+      <h2 class="section-title">STOCK ACADEMYが選ばれる<br>3つの理由</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-num">FEATURE 01</div>
+        <div class="feature-title">講師全員が現役の<br>プロトレーダー</div>
+        <div class="feature-desc">「教えるだけ」の講師はいない。全員が現在進行形でトレードし、リアルタイムの市場感覚を伝えます。教科書ではなく「実戦で使える知識」を習得できます。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-num">FEATURE 02</div>
+        <div class="feature-title">受講生・コーチ・講師<br>三人一組の完全個別制</div>
+        <div class="feature-desc">あなたの投資スタイル・リスク許容度・目標に合わせて専属コーチがPDCAを一緒に回します。週次の1on1で「あなただけの投資メソッド」を構築。</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-num">FEATURE 03</div>
+        <div class="feature-title">独自の株価ダッシュボードで<br>実データを使った実践学習</div>
+        <div class="feature-desc">AIが毎日更新する100銘柄以上の分析レポートを教材として活用。スコア・RSI・PER・PBRを読み解く力を、リアルデータで段階的に身につけます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">HOW IT WORKS</div>
+      <h2 class="section-title">学習の流れ</h2>
+      <p class="section-lead">無料相談から始まり、1年間かけて投資家として自立するまでを完全サポート。</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-circle">💬</div>
+        <div class="how-num">STEP 01</div>
+        <div class="how-title">無料相談</div>
+        <div class="how-desc">現在の状況・目標・懸念点をヒアリング。最適なプランとカリキュラムをご提案。</div>
+      </div>
+      <div class="how-step">
+        <div class="how-circle">📚</div>
+        <div class="how-num">STEP 02</div>
+        <div class="how-title">基礎〜実践の段階的学習</div>
+        <div class="how-desc">動画講義でインプット→専属コーチとのセッションでアウトプット。PDCAで確実に実力UP。</div>
+      </div>
+      <div class="how-step">
+        <div class="how-circle">🏆</div>
+        <div class="how-num">STEP 03</div>
+        <div class="how-title">独立した投資家へ</div>
+        <div class="how-desc">自分のルールと判断軸を持ち、1年後は自力でポートフォリオを管理できる状態に。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIO SYSTEM -->
+<section class="section dark">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">SYSTEM</div>
+      <h2 class="section-title">「三人一組」<br>サポートシステム</h2>
+      <p class="section-lead">あなたひとりで戦わせない。受講期間中は常に専門家2名がバックにいます。</p>
+    </div>
+    <div class="trio-wrap">
+      <div class="trio-card">
+        <div class="trio-icon">🎓</div>
+        <div class="trio-role">TRADER INSTRUCTOR</div>
+        <div class="trio-name">現役トレーダー<br>講師</div>
+        <div class="trio-desc">実績あるプロが月次ライブ講義とQ&Aを担当。相場の本質と再現性のある手法を伝授。</div>
+      </div>
+      <div class="trio-arrow">⟷</div>
+      <div class="trio-card" style="border-color:var(--ac);background:#1a3a5c">
+        <div class="trio-icon">📈</div>
+        <div class="trio-role">YOU</div>
+        <div class="trio-name">受講生<br>（あなた）</div>
+        <div class="trio-desc">動画学習・週次セッション・毎日のレポート確認で着実にスキルを積み上げる。</div>
+      </div>
+      <div class="trio-arrow">⟷</div>
+      <div class="trio-card">
+        <div class="trio-icon">🤝</div>
+        <div class="trio-role">PERSONAL COACH</div>
+        <div class="trio-name">専属<br>コーチ</div>
+        <div class="trio-desc">週次1on1で進捗管理・銘柄分析のレビュー・メンタルサポートを担当。24時間チャット対応。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM PREVIEW -->
+<section class="section gray">
+  <div class="section-inner">
+    <div>
+      <div class="section-tag">CURRICULUM</div>
+      <h2 class="section-title">5段階の学習ロードマップ</h2>
+      <p class="section-lead">投資未経験から始め、1年後に独立した投資家として自走できるレベルを目指します。</p>
+    </div>
+    <div class="curriculum-steps">
+      <div class="curriculum-step">
+        <div class="cs-num">1</div>
+        <div>
+          <div class="cs-phase">PHASE 1 — 基礎編（1〜2ヶ月）</div>
+          <div class="cs-title">株式市場の仕組みと銘柄選定の基礎</div>
+          <div class="cs-desc">証券口座の開設から市場の構造、売買の基本ルール、リスク管理の考え方を学びます。「資金管理が9割」という投資の本質を最初に習得します。</div>
+          <div class="cs-tags">
+            <span class="cs-tag">証券口座開設</span>
+            <span class="cs-tag">市場の仕組み</span>
+            <span class="cs-tag">注文方法</span>
+            <span class="cs-tag">リスク管理入門</span>
+          </div>
+        </div>
+      </div>
+      <div class="curriculum-step">
+        <div class="cs-num">2</div>
+        <div>
+          <div class="cs-phase">PHASE 2 — テクニカル編（3〜5ヶ月）</div>
+          <div class="cs-title">チャート分析で「売買タイミング」を掴む</div>
+          <div class="cs-desc">移動平均線・RSI・MACD・ボリンジャーバンドなど主要なテクニカル指標を習得。STOCK ACADEMYの株価ダッシュボードを使ったリアルタイム実習で定着させます。</div>
+          <div class="cs-tags">
+            <span class="cs-tag">RSI</span>
+            <span class="cs-tag">MACD</span>
+            <span class="cs-tag">移動平均線</span>
+            <span class="cs-tag">ボリンジャーバンド</span>
+            <span class="cs-tag">出来高分析</span>
+          </div>
+        </div>
+      </div>
+      <div class="curriculum-step">
+        <div class="cs-num">3</div>
+        <div>
+          <div class="cs-phase">PHASE 3 — ファンダメンタルズ編（5〜7ヶ月）</div>
+          <div class="cs-title">財務諸表を読んで「割安株」を見つける</div>
+          <div class="cs-desc">PER・PBR・ROE・配当利回り・PSRなどの指標を使った銘柄スクリーニングを習得。決算書の読み方から企業の本質的価値の算出まで、バフェット流バリュー投資の基礎を学びます。</div>
+          <div class="cs-tags">
+            <span class="cs-tag">PER / PBR</span>
+            <span class="cs-tag">ROE / PSR</span>
+            <span class="cs-tag">配当利回り</span>
+            <span class="cs-tag">決算書分析</span>
+            <span class="cs-tag">スクリーニング</span>
+          </div>
+        </div>
+      </div>
+      <div class="curriculum-step">
+        <div class="cs-num">4</div>
+        <div>
+          <div class="cs-phase">PHASE 4 — ポートフォリオ編（7〜9ヶ月）</div>
+          <div class="cs-title">分散投資と資産配分でリスクを最小化</div>
+          <div class="cs-desc">セクター分散・規模分散・国際分散の考え方を習得。ポートフォリオ全体のリスク・リターン特性を管理し、相場環境に応じた資産配分の調整ができるようになります。</div>
+          <div class="cs-tags">
+            <span class="cs-tag">セクター分散</span>
+            <span class="cs-tag">ポートフォリオ管理</span>
+            <span class="cs-tag">リバランス</span>
+            <span class="cs-tag">ドルコスト平均法</span>
+          </div>
+        </div>
+      </div>
+      <div class="curriculum-step">
+        <div class="cs-num">5</div>
+        <div>
+          <div class="cs-phase">PHASE 5 — 実践編（10〜12ヶ月）</div>
+          <div class="cs-title">実弾トレードで「自分の投資ルール」を確立</div>
+          <div class="cs-desc">実際の資金を使いながら講師・コーチと一緒にPDCAを回します。トレード日誌・振り返りセッション・ライブ銘柄分析で、再現性のある投資スタイルを確立します。</div>
+          <div class="cs-tags">
+            <span class="cs-tag">トレード日誌</span>
+            <span class="cs-tag">PDCA実践</span>
+            <span class="cs-tag">ライブ分析</span>
+            <span class="cs-tag">投資ルール構築</span>
+            <span class="cs-tag">メンタル管理</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="curriculum.html" class="btn-primary" style="display:inline-block">カリキュラム詳細を見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS PREVIEW -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">INSTRUCTORS</div>
+      <h2 class="section-title">現役トレーダー講師陣</h2>
+      <p class="section-lead">全員が実際に相場で結果を出し続けているプロフェッショナルです。</p>
+    </div>
+    <div class="teachers-grid">
+      <div class="teacher-card">
+        <div class="teacher-avatar">📊</div>
+        <div class="teacher-name">田中 大輝</div>
+        <div class="teacher-role">テクニカル分析 / スイングトレード</div>
+        <div class="teacher-desc">元大手証券会社トレーダー。独立後15年で累計資産+300%。チャート分析の第一人者。</div>
+        <div class="teacher-stat">
+          <div class="teacher-stat-item">
+            <div class="teacher-stat-num">+300%</div>
+            <div class="teacher-stat-label">累計資産増加率</div>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-card">
+        <div class="teacher-avatar">📋</div>
+        <div class="teacher-name">山本 梓</div>
+        <div class="teacher-role">ファンダメンタルズ / バリュー投資</div>
+        <div class="teacher-desc">元外資系証券アナリスト。CFA資格保有。バリュー株投資で年利平均28%を継続中。</div>
+        <div class="teacher-stat">
+          <div class="teacher-stat-item">
+            <div class="teacher-stat-num">+28%</div>
+            <div class="teacher-stat-label">年利平均</div>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-card">
+        <div class="teacher-avatar">🚀</div>
+        <div class="teacher-name">佐藤 健一</div>
+        <div class="teacher-role">成長株投資 / グロース戦略</div>
+        <div class="teacher-desc">個人投資家として12年。テンバガー（10倍株）を7銘柄発掘。成長株発掘のプロ。</div>
+        <div class="teacher-stat">
+          <div class="teacher-stat-item">
+            <div class="teacher-stat-num">7銘柄</div>
+            <div class="teacher-stat-label">10倍株発掘実績</div>
+          </div>
+        </div>
+      </div>
+      <div class="teacher-card">
+        <div class="teacher-avatar">💰</div>
+        <div class="teacher-name">鈴木 美里</div>
+        <div class="teacher-role">配当投資 / 長期資産形成</div>
+        <div class="teacher-desc">20年間の配当再投資戦略で1億円超のポートフォリオ構築。不労所得月30万円達成。</div>
+        <div class="teacher-stat">
+          <div class="teacher-stat-item">
+            <div class="teacher-stat-num">月30万</div>
+            <div class="teacher-stat-label">配当収入</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <a href="teachers.html" class="btn-primary" style="display:inline-block">講師プロフィールを詳しく見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section dark">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">RESULTS</div>
+      <h2 class="section-title">1期生の実績</h2>
+      <p class="section-lead">実際に受講した方の結果を公開しています。</p>
+    </div>
+    <div class="results-grid">
+      <div class="result-card">
+        <div class="result-num">82<span class="result-unit">%</span></div>
+        <div class="result-label">1年間で<br>ポートフォリオ黒字化達成</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">+47<span class="result-unit">%</span></div>
+        <div class="result-label">受講生の<br>平均ポートフォリオ収益率</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">3<span class="result-unit">倍</span></div>
+        <div class="result-label">受講後の<br>平均取引スコア向上</div>
+      </div>
+      <div class="result-card">
+        <div class="result-num">94<span class="result-unit">%</span></div>
+        <div class="result-label">受講生の<br>継続学習率（12ヶ月後）</div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:#475569;margin-top:20px">
+      ※上記は1期生（2024年度）の実績です。将来の利益を保証するものではありません。
+    </p>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="section gray">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">VOICE</div>
+      <h2 class="section-title">受講生の声</h2>
+    </div>
+    <div class="voices-grid">
+      <div class="voice-card">
+        <div class="voice-text">入学前は損切りができず、含み損を抱えたまま放置していました。専属コーチとのセッションでトレード日誌をつける習慣ができてから、行動が変わりました。今は感情ではなくルールで売買できています。</div>
+        <div class="voice-author">
+          <div class="voice-avatar">👨</div>
+          <div class="voice-info">
+            <div class="voice-name">T.Kさん（40代・会社員）</div>
+            <div class="voice-attr">受講期間: 12ヶ月</div>
+            <div class="voice-result">ポートフォリオ収益率 +62%</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-text">決算書を読むのが苦手で、ずっとテクニカルだけで売買していました。山本先生のファンダメンタルズ講義で「なぜ割安なのか」を理解できるようになり、確信を持って買えるようになりました。</div>
+        <div class="voice-author">
+          <div class="voice-avatar">👩</div>
+          <div class="voice-info">
+            <div class="voice-name">S.Aさん（30代・会社員）</div>
+            <div class="voice-attr">受講期間: 12ヶ月</div>
+            <div class="voice-result">保有銘柄の平均含み益 +38%</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card">
+        <div class="voice-text">副業として株を始めましたが、最初の半年は完全に迷走していました。受講後は株価ダッシュボードでスコアの高い銘柄を絞り込み、RSIとPBRで判断する自分なりの型ができました。毎月安定して収益が出ています。</div>
+        <div class="voice-author">
+          <div class="voice-avatar">👨</div>
+          <div class="voice-info">
+            <div class="voice-name">Y.Mさん（30代・フリーランス）</div>
+            <div class="voice-attr">受講期間: 12ヶ月</div>
+            <div class="voice-result">月次平均収益 +8.3%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">PRICING</div>
+      <h2 class="section-title">料金プラン</h2>
+      <p class="section-lead">1年間の完全サポートプログラム。分割払いも対応しています。</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan">STANDARD PLAN</div>
+        <div class="price-amount">398,000<span>円</span></div>
+        <div class="price-period">（税込）/ 1年間</div>
+        <ul class="price-features">
+          <li>全動画講義（アーカイブ含む）無制限視聴</li>
+          <li>専属コーチ — 隔週1on1セッション（30分）</li>
+          <li>月次トレーダー講師ライブ講義 + Q&A</li>
+          <li>AI株価ダッシュボード利用権（毎日更新）</li>
+          <li>受講生限定コミュニティ参加</li>
+          <li>24時間チャットサポート</li>
+        </ul>
+        <a href="contact.html" class="price-btn price-btn-outline">無料相談から始める</a>
+      </div>
+      <div class="price-card featured">
+        <div class="price-badge">一番人気</div>
+        <div class="price-plan">EXPERT PLAN</div>
+        <div class="price-amount">598,000<span>円</span></div>
+        <div class="price-period">（税込）/ 1年間</div>
+        <ul class="price-features">
+          <li>スタンダードの全内容</li>
+          <li>専属コーチ — 週次1on1セッション（45分）</li>
+          <li>講師による銘柄分析レビュー（月2回）</li>
+          <li>ライブトレード観戦 + 解説（月1回）</li>
+          <li>決算分析レポート毎週受信</li>
+          <li>卒業後1年間フォロアップ権利</li>
+        </ul>
+        <a href="contact.html" class="price-btn price-btn-primary">無料相談から始める</a>
+      </div>
+    </div>
+    <p class="price-note">※ 分割払い（最大12回）対応 / 法人受講可 / 無料相談後にお申込み</p>
+  </div>
+</section>
+
+<!-- FAQ PREVIEW -->
+<section class="section gray">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">よくある質問</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">投資未経験でも受講できますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><span class="faq-a-prefix">A. </span>はい、むしろ未経験の方を歓迎しています。カリキュラムは証券口座の開設から始まり、段階的に知識を積み上げていく設計です。「変な癖がついていない」未経験者は上達が早い傾向にあります。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">副業・会社員でも続けられますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><span class="faq-a-prefix">A. </span>はい。講義は全て録画・アーカイブされ、1on1セッションも平日夜・休日にスケジュール調整可能です。受講生の7割以上が会社員です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">どれくらいの資金から始められますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><span class="faq-a-prefix">A. </span>実践フェーズ（10ヶ月目〜）に入るまでは資金不要です。最初の9ヶ月は知識・分析力の習得に集中し、実弾トレードは10万円程度から始めることを推奨しています。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">利益・リターンは保証されますか？</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><span class="faq-a-prefix">A. </span>利益を保証することはできません。株式投資にはリスクが伴います。STOCK ACADEMYが提供するのは「再現性のある判断軸と投資プロセス」の習得です。過去の実績は将来を保証するものではありません。</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="faq.html" style="color:var(--ac);font-weight:700;text-decoration:none">すべての質問を見る →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <h2>まずは「無料相談」から。<br>30分で投資の現在地を整理しよう。</h2>
+  <p>現在の状況・悩み・目標をヒアリングし、あなたに合ったプランをご提案します。<br>勧誘や即決は一切求めません。</p>
+  <div class="hero-btns">
+    <a href="contact.html" class="btn-primary">無料相談を申し込む（30分・無料）</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>STOCK ACADEMY — 株式大学校</h3>
+        <p>現役トレーダー直接指導による実践型株式投資スクール。投資未経験から始めて、1年間で独立した投資家を目指します。</p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">サービス概要</a></li>
+          <li><a href="curriculum.html">カリキュラム</a></li>
+          <li><a href="teachers.html">講師一覧</a></li>
+          <li><a href="contact.html">無料相談</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="index.html">株価ダッシュボード</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせフォーム</a></li>
+          <li><a href="mailto:info@stock-academy.co.jp">info@stock-academy.co.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 STOCK ACADEMY（株式大学校）All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el){
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

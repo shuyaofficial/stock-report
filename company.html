@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>会社概要 | STOCK ACADEMY — 株式大学校</title>
+<style>
+:root{
+  --nv:#0f172a;--nv2:#1e293b;--nv3:#334155;
+  --ac:#3b82f6;--ac2:#2563eb;
+  --gd:#f59e0b;--gr:#10b981;--rd:#ef4444;
+  --nt:#64748b;--bg:#f8fafc;--cd:#ffffff;
+  --tx:#0f172a;--tx2:#475569;--br:#e2e8f0;
+  --rr:12px;--sh:0 2px 8px rgba(0,0,0,.08),0 8px 24px rgba(0,0,0,.06);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hiragino Sans','Yu Gothic','Meiryo',sans-serif;
+  background:var(--bg);color:var(--tx);font-size:15px;line-height:1.7}
+.hdr{background:var(--nv);color:#fff;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:60px;position:sticky;top:0;z-index:300;box-shadow:0 2px 16px rgba(0,0,0,.4)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.hdr-logo-mark{background:var(--ac);color:#fff;font-size:13px;font-weight:900;padding:4px 10px;border-radius:6px}
+.hdr-title{font-size:16px;font-weight:800;color:#f8fafc}
+.hdr-title em{color:var(--gd);font-style:normal}
+.hdr-nav{display:flex;align-items:center;gap:4px}
+.hdr-nav a{color:#94a3b8;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:6px;transition:all .2s;white-space:nowrap}
+.hdr-nav a:hover,.hdr-nav a.active{color:#fff;background:rgba(255,255,255,.1)}
+.hdr-cta{background:var(--ac);color:#fff!important;border-radius:8px!important;padding:8px 18px!important;font-weight:700!important}
+.page-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f);padding:64px 32px;text-align:center}
+.page-hero-tag{display:inline-block;background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93c5fd;font-size:12px;font-weight:800;padding:4px 16px;border-radius:20px;margin-bottom:18px;letter-spacing:.08em}
+.page-hero h1{font-size:clamp(26px,4vw,44px);font-weight:900;color:#f8fafc;margin-bottom:14px}
+.page-hero p{font-size:16px;color:#94a3b8;max-width:600px;margin:0 auto}
+.section{padding:72px 32px}
+.section-inner{max-width:900px;margin:0 auto}
+.section-tag{display:inline-block;background:rgba(59,130,246,.1);color:var(--ac);font-size:12px;font-weight:800;padding:4px 14px;border-radius:20px;letter-spacing:.08em;margin-bottom:14px}
+.section-title{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--nv);line-height:1.3;margin-bottom:20px}
+.section.gray{background:#f1f5f9}
+.btn-primary{background:var(--ac);color:#fff;font-size:15px;font-weight:800;padding:14px 36px;border-radius:10px;text-decoration:none;transition:transform .2s;display:inline-block;box-shadow:0 4px 20px rgba(59,130,246,.4)}
+.btn-primary:hover{transform:translateY(-2px)}
+
+/* COMPANY TABLE */
+.company-table{width:100%;border-collapse:collapse;background:#fff;
+  border-radius:var(--rr);overflow:hidden;box-shadow:var(--sh);
+  border:1px solid var(--br)}
+.company-table tr{border-bottom:1px solid var(--br)}
+.company-table tr:last-child{border-bottom:none}
+.company-table th{background:#f8fafc;color:var(--nv);font-size:14px;font-weight:800;
+  padding:16px 24px;text-align:left;width:200px;vertical-align:top;
+  border-right:1px solid var(--br)}
+.company-table td{color:var(--tx2);font-size:14px;padding:16px 24px;line-height:1.7}
+
+/* MISSION */
+.mission-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:40px}
+.mission-card{background:#fff;border-radius:var(--rr);padding:32px 24px;
+  border:1px solid var(--br);box-shadow:var(--sh);text-align:center}
+.mission-card::before{content:'';display:block;width:48px;height:4px;
+  background:var(--ac);border-radius:2px;margin:0 auto 20px}
+.mission-title{font-size:16px;font-weight:800;color:var(--nv);margin-bottom:10px}
+.mission-desc{font-size:13px;color:var(--tx2);line-height:1.7}
+
+/* HISTORY */
+.history-list{display:flex;flex-direction:column;gap:0;margin-top:40px;position:relative}
+.history-list::before{content:'';position:absolute;left:99px;top:8px;bottom:8px;
+  width:2px;background:var(--br)}
+.history-item{display:grid;grid-template-columns:100px 1fr;gap:20px;
+  align-items:start;padding:18px 0;position:relative}
+.history-item::before{content:'';width:10px;height:10px;border-radius:50%;
+  background:var(--ac);position:absolute;left:95px;top:22px;z-index:1}
+.history-year{font-size:13px;font-weight:800;color:var(--ac);text-align:right;
+  padding-top:2px}
+.history-content{font-size:14px;color:var(--tx2);padding-left:14px;line-height:1.7}
+.history-content strong{color:var(--nv);font-weight:800}
+
+/* FOOTER */
+.footer{background:var(--nv);color:#64748b;padding:48px 32px 24px}
+.footer-inner{max-width:1080px;margin:0 auto}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand h3{font-size:16px;font-weight:800;color:#f8fafc;margin-bottom:8px}
+.footer-brand p{font-size:13px;line-height:1.7;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:800;color:#f8fafc;margin-bottom:14px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-col ul li a{color:#64748b;text-decoration:none;font-size:13px;transition:color .2s}
+.footer-col ul li a:hover{color:#94a3b8}
+.footer-bottom{border-top:1px solid var(--nv3);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:#64748b;text-decoration:none}
+
+@media(max-width:900px){
+  .mission-grid{grid-template-columns:1fr}
+  .hdr-nav{display:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .company-table th{width:130px}
+}
+@media(max-width:600px){
+  .section{padding:48px 20px}
+  .footer-top{grid-template-columns:1fr}
+  .history-list::before{left:79px}
+  .history-item{grid-template-columns:80px 1fr}
+  .history-item::before{left:75px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="lp.html" class="hdr-logo">
+    <span class="hdr-logo-mark">STOCK</span>
+    <span class="hdr-title">ACADEMY <em>株式大学校</em></span>
+  </a>
+  <nav class="hdr-nav">
+    <a href="service.html">サービス</a>
+    <a href="curriculum.html">カリキュラム</a>
+    <a href="teachers.html">講師</a>
+    <a href="faq.html">よくある質問</a>
+    <a href="blog.html">ブログ</a>
+    <a href="index.html">ダッシュボード</a>
+    <a href="contact.html" class="hdr-cta">無料相談</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-tag">COMPANY</div>
+  <h1>会社概要</h1>
+  <p>「日本に、再現性ある投資家を増やす」というミッションのもと、2024年に設立されました。</p>
+</div>
+
+<!-- MISSION -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="section-tag">MISSION</div>
+      <h2 class="section-title">私たちが大切にしていること</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <div class="mission-title">再現性のある教育</div>
+        <div class="mission-desc">「運良く儲かった」ではなく、「なぜ儲かったか・なぜ損したか」を言語化し、再現できる投資家を育てることを最優先にします。</div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-title">現役プロが直接指導</div>
+        <div class="mission-desc">過去の実績だけの講師はいません。全講師が現在進行形でトレードし、リアルタイムの相場感覚を受講生に伝えます。</div>
+      </div>
+      <div class="mission-card">
+        <div class="mission-title">透明性と誠実さ</div>
+        <div class="mission-desc">リターンの保証はしません。リスクを正直に伝えた上で、それでも挑戦したい方のみを受け入れる、誠実な教育機関でありたいと考えています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY INFO -->
+<section class="section gray">
+  <div class="section-inner">
+    <div>
+      <div class="section-tag">COMPANY INFO</div>
+      <h2 class="section-title">会社情報</h2>
+    </div>
+    <table class="company-table" style="margin-top:32px">
+      <tr>
+        <th>会社名</th>
+        <td>株式会社 STOCK ACADEMY</td>
+      </tr>
+      <tr>
+        <th>設立</th>
+        <td>2024年4月1日</td>
+      </tr>
+      <tr>
+        <th>代表者</th>
+        <td>田中 大輝（代表取締役）</td>
+      </tr>
+      <tr>
+        <th>所在地</th>
+        <td>〒100-0005 東京都千代田区丸の内2-7-2 JPタワー12階</td>
+      </tr>
+      <tr>
+        <th>事業内容</th>
+        <td>
+          1. 株式投資教育スクール「STOCK ACADEMY」の運営<br>
+          2. 株式市場分析ツール・AIダッシュボードの開発・提供<br>
+          3. 投資家向けコンテンツ制作・ブログ運営
+        </td>
+      </tr>
+      <tr>
+        <th>資本金</th>
+        <td>1,000万円</td>
+      </tr>
+      <tr>
+        <th>従業員数</th>
+        <td>12名（講師・コーチ・スタッフ含む）</td>
+      </tr>
+      <tr>
+        <th>受講生数</th>
+        <td>380名（2026年6月現在・累計）</td>
+      </tr>
+      <tr>
+        <th>連絡先</th>
+        <td>
+          メール：info@stock-academy.co.jp<br>
+          受付時間：平日 10:00〜18:00
+        </td>
+      </tr>
+      <tr>
+        <th>主要取引銀行</th>
+        <td>三井住友銀行 丸の内支店</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="section">
+  <div class="section-inner">
+    <div>
+      <div class="section-tag">HISTORY</div>
+      <h2 class="section-title">沿革</h2>
+    </div>
+    <div class="history-list">
+      <div class="history-item">
+        <div class="history-year">2023.10</div>
+        <div class="history-content"><strong>構想開始</strong> — 田中大輝・山本梓・佐藤健一・鈴木美里の4名で「現役プロが教える株式投資スクール」の構想を開始</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2024.01</div>
+        <div class="history-content"><strong>ベータ版テスト開始</strong> — 20名限定のベータ受講生を募集。カリキュラムの実証実験を開始</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2024.04</div>
+        <div class="history-content"><strong>株式会社 STOCK ACADEMY 設立</strong> — 東京都千代田区に法人設立。正式サービス開始</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2024.05</div>
+        <div class="history-content"><strong>1期生（100名）入学</strong> — 初の正式コホートとして100名の受講生を迎える</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2024.09</div>
+        <div class="history-content"><strong>AI株価ダッシュボード v1.0 リリース</strong> — 東証100銘柄以上を毎日更新する独自ダッシュボードを教材として提供開始</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2025.01</div>
+        <div class="history-content"><strong>1期生修了・実績発表</strong> — 1期生の82%がポートフォリオ黒字化達成。受講生平均収益率+47%を記録</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2025.04</div>
+        <div class="history-content"><strong>2期生（180名）入学</strong> — 受講生累計280名を達成。専属コーチ陣を8名に拡充</div>
+      </div>
+      <div class="history-item">
+        <div class="history-year">2026.04</div>
+        <div class="history-content"><strong>3期生（100名）入学</strong> — 累計受講生380名。AI株価ダッシュボード v2.0（グロース市場対応・米国株スクリーニング追加）リリース</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section class="section gray">
+  <div class="section-inner" style="max-width:720px">
+    <div>
+      <div class="section-tag">MESSAGE</div>
+      <h2 class="section-title">代表メッセージ</h2>
+    </div>
+    <div style="background:#fff;border-radius:16px;padding:40px;border:1px solid var(--br);box-shadow:var(--sh);margin-top:32px">
+      <div style="display:flex;align-items:center;gap:20px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--br)">
+        <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#1e3a5f,#3b82f6);display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0">📊</div>
+        <div>
+          <div style="font-size:18px;font-weight:800;color:var(--nv)">田中 大輝</div>
+          <div style="font-size:13px;color:var(--ac);font-weight:700">代表取締役 / チーフ・インストラクター</div>
+        </div>
+      </div>
+      <div style="font-size:15px;color:var(--tx2);line-height:1.9">
+        <p style="margin-bottom:16px">私が証券会社を辞めて独立したとき、最も感じたことは「正しい知識を持っている人が本当に少ない」ということでした。</p>
+        <p style="margin-bottom:16px">株式投資は怖いもの、難しいもの、ギャンブルに近いもの——そういった誤解が世の中にあふれています。でも実際は違います。正しいプロセスと判断軸を持ち、感情ではなくルールで行動できれば、株式投資は「再現性ある資産形成の手段」になります。</p>
+        <p style="margin-bottom:16px">STOCK ACADEMYを作ったのは、そのプロセスと判断軸を、できるだけ多くの人に伝えたかったからです。私たち講師は全員、今も現役でトレードしています。教科書的な知識ではなく、現在の相場で使える実戦知識をお伝えします。</p>
+        <p>「1年後、あなたが自分の言葉でトレードの根拠を語れるようになること」——それが私たちの目標です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>STOCK ACADEMY — 株式大学校</h3>
+        <p>現役トレーダー直接指導による実践型株式投資スクール。</p>
+      </div>
+      <div class="footer-col">
+        <h4>サービス</h4>
+        <ul>
+          <li><a href="service.html">サービス概要</a></li>
+          <li><a href="curriculum.html">カリキュラム</a></li>
+          <li><a href="teachers.html">講師一覧</a></li>
+          <li><a href="contact.html">無料相談</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>情報</h4>
+        <ul>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">ブログ</a></li>
+          <li><a href="company.html">会社概要</a></li>
+          <li><a href="index.html">株価ダッシュボード</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>お問い合わせ</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせフォーム</a></li>
+          <li><a href="mailto:info@stock-academy.co.jp">info@stock-academy.co.jp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 STOCK ACADEMY（株式大学校）All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">特定商取引法に基づく表記</a>
+        <a href="#">免責事項</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
